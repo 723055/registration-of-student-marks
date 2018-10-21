@@ -14,3 +14,5 @@
 /api/students/create createData - сделано для быстрого заполнения тестовыми данными в бд, запустить его в swagger перед началом тестирования
 
 /api/students/student/{id}/{name}/{phone} changeStudentData - изменение данных студента
+
+/api/students/{id} deleteStudent - удаление студента из бд
