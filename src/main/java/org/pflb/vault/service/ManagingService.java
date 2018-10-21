@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,6 @@ public class ManagingService {
         student.setPhoneNumber(phone);
         student.setName(name);
         student.setEmail(email);
-storage.saveStudent(student);
         return student;
     }
 
@@ -37,31 +37,23 @@ storage.saveStudent(student);
         Course course = new Course();
         course.setName(name);
 
-     //   SimpleDateFormat format = new SimpleDateFormat();
-
-        LocalDate dateS = null;
-        LocalDate dateF = null;
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        try {
-            dateS = LocalDate.parse(dateStart, formatter);
-            dateF = LocalDate.parse(dateFinish, formatter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        LocalDate dateS = LocalDate.parse(dateStart, formatter);
+        LocalDate dateF = LocalDate.parse(dateFinish, formatter);
+
+//        try {
+//            dateS = LocalDate.parse(dateStart, formatter);
+//            dateF = LocalDate.parse(dateFinish, formatter);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         course.setDateStart(dateS);
         course.setDateFinish(dateF);
 
-
-//        // Количество дней между датами в миллисекундах
-//        long difference = dateF.getTime() - dateS.getTime();
-//        // Перевод количества дней между датами из миллисекунд в дни
-//        long days = (int) (difference / (24 * 60 * 60 * 1000)); // миллисекунды / (24ч * 60мин * 60сек * 1000мс)
-
- //       course.setLengthCourse(days);
-        //course.setListStudents();
+        Long days = ChronoUnit.DAYS.between(dateS, dateF);
+        course.setLengthCourse(days);
         return course;
     }
 
@@ -83,3 +75,19 @@ storage.saveStudent(student);
 //    }
 
 }
+
+//        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+//        Date date_start = new Date();
+//        Date date_finish = new Date();
+//
+//        try {
+//            date_start = format.parse(dateStart);
+//            date_finish = format.parse(dateFinish);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Количество дней между датами в миллисекундах
+//        int difference = (int) (date_finish.getTime() - date_start.getTime());
+//    //     Перевод количества дней между датами из миллисекунд в дни
+//        int days = (difference / (24 * 60 * 60 * 1000)); // миллисекунды / (24ч * 60мин * 60сек * 1000мс)

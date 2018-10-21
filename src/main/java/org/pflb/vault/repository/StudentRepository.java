@@ -9,7 +9,7 @@ import java.util.ListResourceBundle;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    Student getStudentByName(String name);
+    Student getStudentById(Long id);
 
 //   List<Student> getAllStudentsByCourse(String course);
 

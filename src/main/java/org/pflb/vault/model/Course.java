@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @ToString
@@ -33,8 +34,8 @@ public class Course implements Serializable {
     @Column(name = "dateFinish")
     private LocalDate dateFinish;
 
-//    @Column(name = "lengthCourse")
-//    private Long lengthCourse;
+    @Column(name = "lengthCourse")
+    private Long lengthCourse;
 
 //    @Column(name = "listStudents")
 //    private String listStudents;

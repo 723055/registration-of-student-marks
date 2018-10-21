@@ -9,10 +9,7 @@ import org.pflb.vault.service.MarkCache;
 import org.pflb.vault.service.StudentCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,17 +34,20 @@ public class StudentController {
     private MarkCache markCache;
 
     @GetMapping("students/{name}/{phone}/{email}")
-    public String createStudent(@PathVariable String name, @PathVariable String phone, @PathVariable String email) {
+    public String createStudent(@PathVariable String name, @PathVariable String phone, String email) {
         Student student = managingService.createStudent(name, phone, email);
         storageStudent.saveStudent(student);
         return "Привет, " + student.toString();
     }
 
-    @Secured({"ROLE_USER"})
-    @GetMapping("students/student/{name}")
-    public Student getStudent(@PathVariable String name) {
-
-        return storageStudent.getStudentByName(name);
+   // @Secured({"ROLE_USER"})
+    @GetMapping("students/student/{id}/{name}/{phone}")
+    public void changeStudentData(@PathVariable Long id, @PathVariable String name, @PathVariable String phone, String email) {
+        Student student = storageStudent.getStudentById(id);
+        student.setName(name);
+        student.setEmail(email);
+        student.setPhoneNumber(phone);
+        storageStudent.saveStudent(student);
     }
 
     @GetMapping("students/create")

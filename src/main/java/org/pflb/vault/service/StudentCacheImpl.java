@@ -23,9 +23,9 @@ public class StudentCacheImpl implements StudentCache {
 
 
     @Override
-    public Student getStudentByName(String name) {
+    public Student getStudentById(Long id) {
 
-        return studentRepository.getStudentByName(name);
+        return studentRepository.getStudentById(id);
     }
 
 //

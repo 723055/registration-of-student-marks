@@ -9,7 +9,7 @@ public interface StudentCache {
 
     void saveStudent(Student student);
 
-    Student getStudentByName(String name);
+    Student getStudentById(Long id);
 
  //  List<Student> getAllCoursesByStudent(String course);
 
