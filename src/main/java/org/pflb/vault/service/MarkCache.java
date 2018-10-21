@@ -8,5 +8,5 @@ public interface MarkCache {
 
     void saveMark(Mark mark);
 
-   List<Mark> getMarkByStudentId (Long studentId);
+   List<Mark> getMarkByStudentIdAndCourseId (Long studentId, Long courseId);
 }

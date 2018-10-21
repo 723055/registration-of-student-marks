@@ -3,6 +3,8 @@ package org.pflb.vault.controller;
 import org.pflb.vault.model.Course;
 import org.pflb.vault.model.Mark;
 import org.pflb.vault.model.Student;
+import org.pflb.vault.model.User;
+import org.pflb.vault.repository.UserRepository;
 import org.pflb.vault.service.CourseCache;
 import org.pflb.vault.service.ManagingService;
 import org.pflb.vault.service.MarkCache;
@@ -12,6 +14,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,6 +35,9 @@ public class StudentController {
 
     @Autowired
     private MarkCache markCache;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("students/{name}/{phone}/{email}")
     public String createStudent(@PathVariable String name, @PathVariable String phone, String email) {
@@ -56,6 +62,19 @@ public class StudentController {
 
     }
 
+    @GetMapping ("students/list")
+    public List<Student> studentList(){
+        List<Student> students = storageStudent.getAllStudents();
+        for (Student s:students){
+            List<Course> courses = s.getCourses();
+            for (Course c:courses){
+                c.getStudents().clear();
+                s.getCourseList().add(c);
+            }
+        }
+        return students;
+    }
+
     @GetMapping("students/create")
     public String createData(){
         List<Course> courses = new ArrayList<>();
@@ -65,6 +84,8 @@ public class StudentController {
             course.setDateStart(LocalDate.now().plusDays(i).minusDays(15));
             course.setDateFinish(LocalDate.now().plusDays(i + 10));
             courseCache.saveCourse(course);
+            Long days = ChronoUnit.DAYS.between(course.getDateStart(), course.getDateFinish());
+            course.setLengthCourse(days);
             courses.add(course);
         }
         Random random = new Random();
@@ -86,8 +107,14 @@ public class StudentController {
                 markCache.saveMark(mark);
             }
         }
+        User user = new User();
+        user.setLogin("admin");
+        user.setPassword("admin");
+        userRepository.save(user);
         return "saved!";
     }
+
+
 
 }
 

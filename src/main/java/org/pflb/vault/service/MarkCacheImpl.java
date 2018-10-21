@@ -16,13 +16,21 @@ public class MarkCacheImpl implements MarkCache {
 
     @Override
     public void saveMark(Mark mark) {
+        List<Mark> marks = markRepository.getMarksByStudentIdAndCourseId(mark.getStudentId(), mark.getCourseId());
+        for (Mark m:marks){
+            if (mark.getDate().equals(m.getDate())){
+                m.setMark(mark.getMark());
+                markRepository.save(m);
+                return;
+            }
+        }
         markRepository.save(mark);
-
     }
 
     @Override
-    public List<Mark> getMarkByStudentId(Long studentId) {
-        return markRepository.getMarksByStudentId(studentId);
+    public List<Mark> getMarkByStudentIdAndCourseId(Long studentId, Long courseId){
+
+        return markRepository.getMarksByStudentIdAndCourseId(studentId, courseId);
     }
 
 

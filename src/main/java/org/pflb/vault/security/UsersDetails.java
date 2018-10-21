@@ -19,7 +19,7 @@ public class UsersDetails implements org.springframework.security.core.userdetai
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Lists.newArrayList(new SimpleGrantedAuthority("ROLE_COMMON_USER"));
+        return Lists.newArrayList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override

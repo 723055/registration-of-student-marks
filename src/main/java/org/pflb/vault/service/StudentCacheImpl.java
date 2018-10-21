@@ -2,6 +2,7 @@ package org.pflb.vault.service;
 
 import org.pflb.vault.model.Course;
 import org.pflb.vault.model.Student;
+import org.pflb.vault.repository.CourseRepository;
 import org.pflb.vault.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ public class StudentCacheImpl implements StudentCache {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
 
 
     @Override
@@ -35,6 +39,12 @@ public class StudentCacheImpl implements StudentCache {
         studentRepository.save(student);
         studentRepository.delete(student);
     }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
 
 //
 //    @Override

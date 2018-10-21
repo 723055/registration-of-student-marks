@@ -19,6 +19,7 @@ public class CourseCacheImpl implements CourseCache {
     CourseRepository courseRepository;
 
 
+
     @Override
     public void saveCourse(Course course) {
 
@@ -48,8 +49,11 @@ public class CourseCacheImpl implements CourseCache {
 
     @Override
     public Course getCourseById(Long id) {
-        return courseRepository.findById(id).get();
+        Course course = courseRepository.findById(id).get();
+        return course;
     }
+
+
 
 
 //    private Map<Long, Long> studentMap = Maps.newHashMap();

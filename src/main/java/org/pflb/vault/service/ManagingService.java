@@ -24,6 +24,7 @@ public class ManagingService {
     @Autowired
     private CourseCache courseCache;
 
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public Student createStudent(String name, String phone, String email) {
         Student student = new Student();
@@ -37,17 +38,9 @@ public class ManagingService {
         Course course = new Course();
         course.setName(name);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
         LocalDate dateS = LocalDate.parse(dateStart, formatter);
         LocalDate dateF = LocalDate.parse(dateFinish, formatter);
-
-//        try {
-//            dateS = LocalDate.parse(dateStart, formatter);
-//            dateF = LocalDate.parse(dateFinish, formatter);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
         course.setDateStart(dateS);
         course.setDateFinish(dateF);
@@ -61,13 +54,16 @@ public class ManagingService {
 
 
 
-    public Mark createMark(Long studentId, Long courseId, int i) {
+    public Mark createMark(Long studentId, Long courseId, int i, String date) {
         Mark mark = new Mark();
         mark.setCourseId(courseId);
         mark.setStudentId(studentId);
         mark.setMark(i);
+        mark.setDate(LocalDate.parse(date, formatter));
         return mark;
     }
+
+
 
 
 //    public List <Course> findAllStudents(){

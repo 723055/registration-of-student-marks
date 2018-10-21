@@ -43,6 +43,10 @@ public class Student implements Serializable {
     private List<Course> courses = new ArrayList<>();
 
     @Transient
+    private List<Course> courseList = new ArrayList<>();
+
+
+    @Transient
     private List<Mark> marks = new ArrayList<>();
 
 

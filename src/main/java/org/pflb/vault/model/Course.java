@@ -38,7 +38,7 @@ public class Course implements Serializable {
     private Long lengthCourse;
 
 //    @Column(name = "listStudents")
-//    private String listStudents;
+//    private List<Student> listStudents;
 
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

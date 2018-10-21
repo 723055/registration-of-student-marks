@@ -16,6 +16,8 @@ public interface CourseCache {
 
     Course getCourseById(Long id);
 
+ //   List<Course> getCoursesByStudentId(Long studentId);
+
 //    void addStudentOnCourse (Long courseId, Long studentId);
 
 }
