@@ -25,17 +25,17 @@ public class CourseCacheImpl implements CourseCache {
         courseRepository.save(course);
     }
 
+//    @Override
+//    public Course getCourseById(Long id) {
+//
+//        return courseRepository.getCourseById(id);
+//    }
+
+
+
     @Override
-    public Course getCourseByName(String name) {
-
-        return courseRepository.getCourseByName(name);
-    }
-
-
-
-    @Override
-    public void deleteCourseByName(String name) {
-        Course c = courseRepository.getCourseByName(name);
+    public void deleteCourseById(Long id) {
+        Course c = courseRepository.getCourseById(id);
         c.getStudents().clear();
         courseRepository.save(c);
         courseRepository.delete(c);

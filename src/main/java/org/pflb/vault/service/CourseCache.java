@@ -8,9 +8,9 @@ import java.util.List;
 public interface CourseCache {
     void saveCourse(Course course);
 
-    Course getCourseByName(String name);
+   // Course getCourseByName(Long id);
 
-    void deleteCourseByName(String name);
+    void deleteCourseById(Long id);
 
     List<Course> getAllCourses();
 

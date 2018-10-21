@@ -40,9 +40,9 @@ public class CourseController {
         return "Мы создали, " + course.toString();
     }
 
-    @DeleteMapping(value = "/courses/{name}")
-    public void deleteCourse(@PathVariable String name) {
-        storageCourse.deleteCourseByName(name);
+    @DeleteMapping(value = "/courses/{id}")
+    public void deleteCourse(@PathVariable Long id) {
+        storageCourse.deleteCourseById(id);
 
     }
 

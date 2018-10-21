@@ -11,6 +11,8 @@ public interface StudentCache {
 
     Student getStudentById(Long id);
 
+    void deleteStudentById(Long id);
+
  //  List<Student> getAllCoursesByStudent(String course);
 
 

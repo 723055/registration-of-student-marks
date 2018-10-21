@@ -50,6 +50,12 @@ public class StudentController {
         storageStudent.saveStudent(student);
     }
 
+    @DeleteMapping(value = "/students/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        storageStudent.deleteStudentById(id);
+
+    }
+
     @GetMapping("students/create")
     public String createData(){
         List<Course> courses = new ArrayList<>();

@@ -28,6 +28,14 @@ public class StudentCacheImpl implements StudentCache {
         return studentRepository.getStudentById(id);
     }
 
+    @Override
+    public void deleteStudentById(Long id) {
+        Student student = studentRepository.getStudentById(id);
+        student.getCourses().clear();
+        studentRepository.save(student);
+        studentRepository.delete(student);
+    }
+
 //
 //    @Override
 //    public List<Student> getAllCoursesByStudent(String name) {
