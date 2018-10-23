@@ -1,6 +1,5 @@
 package org.pflb.vault.service;
 
-import org.pflb.vault.model.Course;
 import org.pflb.vault.model.Student;
 
 import java.util.List;
@@ -14,10 +13,5 @@ public interface StudentCache {
     void deleteStudentById(Long id);
 
     List<Student> getAllStudents();
-
-
-    //  List<Student> getAllCoursesByStudent(String course);
-
-
 
 }

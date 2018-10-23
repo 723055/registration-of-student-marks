@@ -3,7 +3,6 @@ package org.pflb.vault.security;
 import com.google.common.collect.Lists;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
@@ -12,7 +11,7 @@ public class UsersDetails implements org.springframework.security.core.userdetai
     private String userName;
     private String password;
 
-    public UsersDetails(String userName, String password){
+    public UsersDetails(String userName, String password) {
         this.password = password;
         this.userName = userName;
     }

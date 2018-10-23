@@ -1,6 +1,5 @@
 package org.pflb.vault.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +9,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @ToString
@@ -37,14 +35,10 @@ public class Course implements Serializable {
     @Column(name = "lengthCourse")
     private Long lengthCourse;
 
-//    @Column(name = "listStudents")
-//    private List<Student> listStudents;
-
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id"))
-  //  @JsonIgnore
     private List<Student> students = new ArrayList<>();
 
 

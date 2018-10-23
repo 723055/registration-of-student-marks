@@ -10,7 +10,6 @@ import org.pflb.vault.service.ManagingService;
 import org.pflb.vault.service.MarkCache;
 import org.pflb.vault.service.StudentCache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -46,7 +45,6 @@ public class StudentController {
         return "Привет, " + student.toString();
     }
 
-   // @Secured({"ROLE_USER"})
     @GetMapping("students/student/{id}/{name}/{phone}")
     public void changeStudentData(@PathVariable Long id, @PathVariable String name, @PathVariable String phone, String email) {
         Student student = storageStudent.getStudentById(id);
@@ -62,12 +60,12 @@ public class StudentController {
 
     }
 
-    @GetMapping ("students/list")
-    public List<Student> studentList(){
+    @GetMapping("students/list")
+    public List<Student> studentList() {
         List<Student> students = storageStudent.getAllStudents();
-        for (Student s:students){
+        for (Student s : students) {
             List<Course> courses = s.getCourses();
-            for (Course c:courses){
+            for (Course c : courses) {
                 c.getStudents().clear();
                 s.getCourseList().add(c);
             }
@@ -76,7 +74,7 @@ public class StudentController {
     }
 
     @GetMapping("students/create")
-    public String createData(){
+    public String createData() {
         List<Course> courses = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Course course = new Course();
@@ -113,8 +111,6 @@ public class StudentController {
         userRepository.save(user);
         return "saved!";
     }
-
-
 
 }
 

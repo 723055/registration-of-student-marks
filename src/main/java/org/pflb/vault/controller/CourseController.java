@@ -9,7 +9,6 @@ import org.pflb.vault.service.ManagingService;
 import org.pflb.vault.service.MarkCache;
 import org.pflb.vault.service.StudentCache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,16 +47,16 @@ public class CourseController {
     }
 
     @GetMapping("courses/course_list")
-    public List<Course> courseList (){
+    public List<Course> courseList() {
 
         return storageCourse.getAllCourses();
     }
 
     @GetMapping("courses/get/{id}")
-    public Course getCourseById(@PathVariable Long id){
+    public Course getCourseById(@PathVariable Long id) {
         Course course = storageCourse.getCourseById(id);
 
-        for (Student student:course.getStudents()){
+        for (Student student : course.getStudents()) {
             List<Mark> marks = markCache.getMarkByStudentIdAndCourseId(student.getId(), id);
             student.getMarks().addAll(marks);
         }
@@ -65,7 +64,7 @@ public class CourseController {
     }
 
     @GetMapping("courses/{courseId}/add/{studentId}")
-    public String attachStudentToCourse(@PathVariable Long courseId, @PathVariable Long studentId){
+    public String attachStudentToCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
         Course course = storageCourse.getCourseById(courseId);
         Student student = studentCache.getStudentById(studentId);
         course.getStudents().add(student);
@@ -74,7 +73,7 @@ public class CourseController {
     }
 
     @DeleteMapping("courses/{courseId}/delete/{studentId}")
-    public String deleteStudentToCourse(@PathVariable Long courseId, @PathVariable Long studentId){
+    public String deleteStudentToCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
         Course course = storageCourse.getCourseById(courseId);
         Student student = studentCache.getStudentById(studentId);
         course.getStudents().remove(student);

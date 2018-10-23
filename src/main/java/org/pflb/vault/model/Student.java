@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,7 +30,6 @@ public class Student implements Serializable {
     @Column(name = "phone")
     private String phoneNumber;
 
-    //@Enumerated
     @Column(name = "email")
     private String email;
 
@@ -48,6 +46,5 @@ public class Student implements Serializable {
 
     @Transient
     private List<Mark> marks = new ArrayList<>();
-
 
 }

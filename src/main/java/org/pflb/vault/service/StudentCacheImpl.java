@@ -1,6 +1,5 @@
 package org.pflb.vault.service;
 
-import org.pflb.vault.model.Course;
 import org.pflb.vault.model.Student;
 import org.pflb.vault.repository.CourseRepository;
 import org.pflb.vault.repository.StudentRepository;
@@ -25,7 +24,6 @@ public class StudentCacheImpl implements StudentCache {
         studentRepository.save(student);
     }
 
-
     @Override
     public Student getStudentById(Long id) {
 
@@ -42,15 +40,8 @@ public class StudentCacheImpl implements StudentCache {
 
     @Override
     public List<Student> getAllStudents() {
+
         return studentRepository.findAll();
     }
-
-
-//
-//    @Override
-//    public List<Student> getAllCoursesByStudent(String name) {
-//
-//        return studentRepository.getAllStudentsByCourse(name);
-//    }
 
 }
